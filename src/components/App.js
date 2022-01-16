@@ -1,12 +1,17 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import Home from '../components/pages/Home'
+import Home from './Pages/Home'
+
+import '../styles/global.css'
+// import '../styles/responsive.css'
 
 const App = () => {
-  <Router>
-    <Routes>
-        <Route path='/' element={<Home />} />
-    </Routes>
-  </Router>
+  return (
+    <Router>
+      <Routes>
+          <Route path='/' element={<Home />} />
+      </Routes>
+    </Router>
+  )
 }
 
 export default App

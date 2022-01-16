@@ -1,0 +1,48 @@
+/*____________________________________________|  Style-Global  |____________________________________________*/
+
+*, *::after, *::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+}
+
+a:link, a:visited, a:active {
+    text-decoration: none;
+    color: var(--color-main);
+}
+
+body {
+    background-color: #fcfcfc;
+}
+
+
+/*____________________________________________|  Variables  |____________________________________________*/
+
+:root {
+    /* --color-body:  #fcfcfc; */
+    --color-2:  #fff;
+    --color-3:  rgba(0, 0, 0, 0.65);
+    --color-4:  #1890ff;
+    --color-box-fav:  #f5f5f5;
+    --color-timer-active: #606060;
+    --color-fav-active: #dd0031;
+    --color-fav-disabled: #ec7d96;
+    --color-news-title:  #6b6b6b;
+    --color-text-faint:  #767676;
+    --color-9:  #828282;
+    --color-10: #343434;
+    --color-11: #eaeaea;
+    --color-12: #2e2e2e;
+    --color-13: #ececec;
+    --color-14: #1797ff;
+    --color-15: #3b3b3b;
+    --color-border: #979797;
+}
+
+
+
+svg {
+    stroke: currentcolor; 
+    fill: currentcolor;
+}
