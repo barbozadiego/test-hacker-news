@@ -32,7 +32,7 @@ nav {
 }
 
 
-/* .menu li a.active {
+.menu li a.active {
     border: solid 1px var(--color-menu-active);
     color: var(--color-menu-active);
-} */
+}

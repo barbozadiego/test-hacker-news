@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom'
 import Header from '../Organisms/Header'
 import MainMenu from '../Atoms/MainMenu'
 import GridNews from '../Templates/GridNews'
+import Loader from '../Molecules/Loader'
 
 import '../../styles/home.css'
 
@@ -53,9 +54,9 @@ const Home = () => {
                         }
                     </section>
 
-                : <section>
-                    <p>Loader...</p>  
-                </section>
+                : <div className='box-loader'>
+                     <Loader message='Getting data from server...' />  
+                  </div>
             }
 
         </>

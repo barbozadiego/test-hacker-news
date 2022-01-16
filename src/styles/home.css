@@ -6,3 +6,9 @@
     column-gap: 2em;
     margin: 0 15%;
 }
+
+.box-loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
