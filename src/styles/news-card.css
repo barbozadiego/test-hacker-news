@@ -1,9 +1,7 @@
 
 .card {
-    /* width: 34.5em; */
-    /* height: 5.6em; */
     display: grid;
-    grid-template-columns: 85% 15%;
+    grid-template-columns: 87% 13%;
     border-radius: .4em;
     border: solid 1px var(--color-border);
     background-color: #fff;
@@ -15,19 +13,14 @@
     align-items: center;
 }
 
-/* .card:not(:last-child) {
-    margin-bottom: 2em;
-} */
-
 .news-content {
     width: 100%;
     min-height: 5em;
     padding: 1em 1em 1em 1.5em;
-    font-family: 'Roboto', sans-serif;
 }
 
 .news-content h2 {
-    font-size: .9em;
+    font-size: .85em;
     font-weight: 500;
     color: var(--color-news-title);
 }
@@ -40,13 +33,15 @@
 }
 
 .favorite svg {
-    width: 1.8em;
+    width: 1.65em;
     color: var(--color-fav-active);
+    cursor: pointer;
 }
 
 
+
 .timer {
-    font-size: .75em;
+    font-size: .7em;
     font-weight: 400;
     display: flex;
     align-items: center;

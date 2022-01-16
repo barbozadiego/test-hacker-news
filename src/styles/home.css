@@ -2,9 +2,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     justify-content: space-evenly;
-    gap: 2em;
-    /* padding: 5em 15%; */
-    margin: 5em 15%;
-    /* background-color: tomato; */
-    /* grid-template-columns: repeat(auto-fill, minmax(20em, 1fr)); */
+    row-gap: 1.5em;
+    column-gap: 2em;
+    margin: 0 15%;
 }

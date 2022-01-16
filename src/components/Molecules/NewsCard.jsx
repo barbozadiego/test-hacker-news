@@ -1,10 +1,18 @@
+import { useState } from 'react'
 import Icon from '../Atoms/Icon'
 
 import '../../styles/news-card.css'
 
 const NewsCard = ({author, title, url, created}) => {
+
+    const [activeFav, setActiveFav] = useState(true)
+
+    const toggleFaves = () => {
+        setActiveFav(false)
+    }
+
     return(
-        <div className="card">
+        <article className="card">
             <a href={url} rel="noopener noreferrer" target="_blank">
                 <div className="news-content">
                     <span className='timer'>
@@ -15,11 +23,14 @@ const NewsCard = ({author, title, url, created}) => {
                 </div>
             </a>
 
-     
             <div className="box-favorite">
-               <span className='favorite'><Icon tags='favorite-1' /></span>
+                <span onClick={toggleFaves} className='favorite'>
+                    {
+                        activeFav ? <Icon tags='favorite-1' /> : <Icon tags='favorite-2' />
+                    }
+                </span>
             </div>
-        </div>
+        </article>
     )
 }
 

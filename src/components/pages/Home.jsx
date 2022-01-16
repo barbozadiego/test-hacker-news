@@ -1,14 +1,19 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
 
-import NewsCard from "../Molecules/NewsCard"
-import Header from "../Organisms/Header"
+import Header from '../Organisms/Header'
+import MainMenu from '../Atoms/MainMenu'
+import GridNews from '../Templates/GridNews'
 
 import '../../styles/home.css'
 
 
 const Home = () => {
 
+    const location = useLocation()
+
     const [news, setNews] = useState()
+    // const [favesNews, setFavesNews] = useState()
 
 
     useEffect(() => {
@@ -37,17 +42,22 @@ const Home = () => {
     return (
         <>
          <Header />
-         <section className="grid-news">
+         <MainMenu />
             {
-                news && news.slice(0,8).map((n,i) => <NewsCard 
-                                            author={n.author}
-                                            title={n.title}
-                                            url={n.url}
-                                            created={n.created}
-                                            key={i}
-                                        />)
+                news 
+                ?  <section className="grid-news">
+                        {
+                            location.pathname === '/' 
+                             ? <GridNews news={news} />
+                             : console.log(location)
+                        }
+                    </section>
+
+                : <section>
+                    <p>Loader...</p>  
+                </section>
             }
-         </section>
+
         </>
     )
 
