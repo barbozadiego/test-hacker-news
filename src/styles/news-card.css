@@ -8,6 +8,10 @@
     overflow: hidden;
 }
 
+.card:hover {
+    opacity: 0.5;
+}
+
 .card a {
     display: flex;
     align-items: center;
@@ -16,7 +20,7 @@
 .news-content {
     width: 100%;
     min-height: 5em;
-    padding: 1em 1em 1em 1.5em;
+    padding: 1em 1.3em 1em 1.5em;
 }
 
 .news-content h2 {
@@ -37,7 +41,6 @@
     color: var(--color-fav-active);
     cursor: pointer;
 }
-
 
 
 .timer {

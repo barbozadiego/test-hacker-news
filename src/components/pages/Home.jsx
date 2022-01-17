@@ -44,21 +44,27 @@ const Home = () => {
         <>
          <Header />
          <MainMenu />
+         <section>
+            <div className="news-picker">
+
+            </div>
+
             {
                 news 
-                ?  <section className="grid-news">
+                ?  <div className="grid-news">
                         {
                             location.pathname === '/' 
                              ? <GridNews news={news} />
                              : console.log(location)
                         }
-                    </section>
+                    </div>
 
-                : <div className='box-loader'>
+                :  <div className='box-loader'>
                      <Loader message='Getting data from server...' />  
-                  </div>
+                   </div>
             }
-
+             
+         </section>
         </>
     )
 
