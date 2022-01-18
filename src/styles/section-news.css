@@ -8,6 +8,7 @@
     justify-content: space-evenly;
     row-gap: 1.5em;
     column-gap: 2em;
+    margin-bottom: 5em;
 }
 
 .box-loader {

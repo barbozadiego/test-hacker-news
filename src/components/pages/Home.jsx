@@ -1,5 +1,5 @@
-import { useState, useRef } from 'react'
-// import { useState, useEffect, useRef } from 'react'
+// import { useState, useRef } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import useLocalStorage from '../../hooks/useLocalStorage'
 
 import Header from '../Organisms/Header'
@@ -8,20 +8,32 @@ import FaveNews from '../Organisms/FaveNews'
 import Icon from '../Atoms/Icon'
 
 import useFetch from '../../hooks/useFetch'
-
-
 import '../../styles/home.css'
 
 
 const Home = () => {
 
     const select = useRef(),
-          menu = useRef()
+          menu = useRef(),
+          pages = useRef()
 
     const [content, setContent] = useState('All')
 
-    const [query, setQuery] = useLocalStorage('query', 'Select your news')
-    const news = useFetch(query === 'Select your news' ? 'angular' : query)
+    const [currentPage, setCurrentPage] = useState(0),
+          [query, setQuery] = useLocalStorage('query', 'Select your news')
+
+    const news = useFetch(query === 'Select your news' ? 'angular' : query, currentPage)
+
+
+    const prevPage = () => setCurrentPage(currentPage - 1)
+
+    const nextPage = () => setCurrentPage(currentPage + 1)
+
+
+    const changePage = e => {
+        // setCurrentPage(parseInt(e.target.textContent,10))
+        console.log(currentPage)
+    }
 
 
     const selectQuery = (e) => {
@@ -43,10 +55,22 @@ const Home = () => {
     }
 
 
+    useEffect(() => {
+        if(news) {
+            let allPages = [...pages.current.children],
+                withClass = allPages.filter(p => p.className === 'page page-active')
+
+            if(withClass) withClass.forEach(p => p.classList.remove('page-active'))
+            allPages[currentPage].classList.add('page-active')
+        } 
+    })
+
+
         // useEffect(() => {
     //     select.current.className === 'display-picker' && window.addEventListener('click', () => alert('click'))     
     //     return () => window.removeEventListener('click', window)
     // })
+
 
 
     return (
@@ -75,18 +99,27 @@ const Home = () => {
                 </ul>
                 <span onClick={showQuery} className='arrow-down'><Icon tags='arrow-down'/></span>
             </div>
-
             {
-                content === 'All'
+                news && content === 'All'
                     ? <AllNews news={news} />
                     : <FaveNews />
             }
             
-
             <div className="box-paginate">
+                <span onClick={prevPage} className='arrow-left'><Icon tags='arrow-left' /></span>
+
+                <div ref={pages} className="pages">
                     {
-                    //   news.map((n,i) => <p>{i}</p>)
+                      news && news.map((p,i) => <span 
+                                                 onClick={changePage}
+                                                 className='page' 
+                                                 key={i}>
+                                                       {i+1}
+                                                </span>)
                     }
+                </div>
+
+                <span onClick={nextPage} className='arrow-right'><Icon tags='arrow-right' /></span>
             </div>
              
          </section>
