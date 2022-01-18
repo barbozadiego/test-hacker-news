@@ -11,16 +11,13 @@ const NewsCard = ({author, title, url, created, news, id}) => {
 
     const [favIcon, setFavIcon] = useState('disabled-fav')
 
-    // const [currentFav, setCurrentFav] = useState([])
     const [localStorage, setLocalStorage] = useLocalStorage('faves', [])
-    let uva = []
 
     const toggleFaves = e => {
         e.stopPropagation()
 
         let fav = news.filter(n => n.id === id)[0]
-      
-        
+
         if(favesCard.current.className === 'card') {
             setFavIcon('active-fav')
             favesCard.current.classList.add('classActive')
@@ -28,9 +25,13 @@ const NewsCard = ({author, title, url, created, news, id}) => {
             setFavIcon('disabled-fav')
             favesCard.current.classList.remove('classActive')
         }
+
+        setLocalStorage([...localStorage, fav])
         
-        // setLocalStorage(uva)
-        console.log(uva)
+        
+        // if(favIcon === 'active-fav' && favesCard.current.className === 'card') setLocalStorage([...localStorage, fav])
+        // setLocalStorage([...localStorage, fav])
+        console.log(localStorage)
     }
 
 

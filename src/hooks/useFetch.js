@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react"
 
-const useFetch = (query) => {
+const useFetch = ( query ) => {
 
     const [news, setNews] = useState()
 
     useEffect(() => {
         fetch(`https://hn.algolia.com/api/v1/search_by_date?query=${query}&page=0`)
+        // fetch(`https://hn.algolia.com/api/v1/search_by_date?query=${query === 'Select your news' ? 'angular' : query}&page=0`)
         .then(res => res.json())
         .then(data => {
 
