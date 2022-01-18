@@ -1,5 +1,5 @@
-// import { useState, useEffect, useRef } from 'react'
 import { useState, useRef } from 'react'
+// import { useState, useEffect, useRef } from 'react'
 import useLocalStorage from '../../hooks/useLocalStorage'
 
 import Header from '../Organisms/Header'
@@ -60,35 +60,33 @@ const Home = () => {
         </nav>
 
          <section className='section-news'>
+             
+            <div className="box-news">
+                <div className="news-select" onClick={showQuery}> 
+                    { 
+                    query !== 'Select your news' && <img src={`/images/${query}.png`} alt={`${query}-logo`} />
+                    }
+                    <span>{query}</span>
+                </div>
+                <ul ref={select}>
+                    <li onClick={selectQuery}><img src="/images/angular.png" alt="angular-logo" />angular</li>
+                    <li onClick={selectQuery}><img src="/images/reactjs.png" alt="react-logo" />reactjs</li>
+                    <li onClick={selectQuery}><img src="/images/vuejs.png" alt="vue-logo" />vuejs</li>
+                </ul>
+                <span onClick={showQuery} className='arrow-down'><Icon tags='arrow-down'/></span>
+            </div>
+
             {
-                /* It is not necessary to show the FILTER-SELECT in the FAVES section so it is hidden by the ternary operator. */
                 content === 'All'
-                    ? <> 
-                        <div className="box-news">
-                            <div className="news-select" onClick={showQuery}> 
-                                { 
-                                query !== 'Select your news' && <img src={`/images/${query}.png`} alt={`${query}-logo`} />
-                                }
-                                <span>{query}</span>
-                            </div>
-                            <ul ref={select}>
-                                <li onClick={selectQuery}><img src="/images/angular.png" alt="angular-logo" />angular</li>
-                                <li onClick={selectQuery}><img src="/images/reactjs.png" alt="react-logo" />reactjs</li>
-                                <li onClick={selectQuery}><img src="/images/vuejs.png" alt="vue-logo" />vuejs</li>
-                            </ul>
-                            <span onClick={showQuery} className='arrow-down'><Icon tags='arrow-down'/></span>
-                        </div>
-
-                         <AllNews news={news} />
-                     </>
-
+                    ? <AllNews news={news} />
                     : <FaveNews />
             }
             
 
             <div className="box-paginate">
-                
-
+                    {
+                    //   news.map((n,i) => <p>{i}</p>)
+                    }
             </div>
              
          </section>

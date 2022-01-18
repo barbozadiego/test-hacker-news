@@ -1,17 +1,26 @@
-import { useState, useRef } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Icon from '../Atoms/Icon'
 import useLocalStorage from '../../hooks/useLocalStorage'
-
+import moment from 'moment'
 
 import '../../styles/news-card.css'
 
-const NewsCard = ({author, title, url, created, news, id}) => {
 
+
+const NewsCard = ({author, title, url, created, news, id}) => {
+        
     const favesCard = useRef()
 
+    const [ago, setAgo] = useState()
     const [favIcon, setFavIcon] = useState('disabled-fav')
-
     const [localStorage, setLocalStorage] = useLocalStorage('faves', [])
+
+
+    useEffect(() => {
+        setAgo(moment(created).fromNow())
+    }, [created])
+
+
 
     const toggleFaves = e => {
         e.stopPropagation()
@@ -31,7 +40,7 @@ const NewsCard = ({author, title, url, created, news, id}) => {
         
         // if(favIcon === 'active-fav' && favesCard.current.className === 'card') setLocalStorage([...localStorage, fav])
         // setLocalStorage([...localStorage, fav])
-        console.log(localStorage)
+        // console.log(localStorage)
     }
 
 
@@ -41,7 +50,7 @@ const NewsCard = ({author, title, url, created, news, id}) => {
             <a href={url} rel="noopener noreferrer" target="_blank">
                 <div className="news-content">
                     <span className='timer'>
-                        <Icon tags='timer' />{`${created} ago by`} 
+                        <Icon tags='timer' />{`${ago} by`} 
                         <strong>{author}</strong>
                     </span>
                     <h2>{title}</h2>
