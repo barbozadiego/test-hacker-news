@@ -24,7 +24,7 @@
         ]
     },
     {
-        "tags":"favorite-1",
+        "tags":"disabled-fav",
         "viewBox": {
             "width":1150,
             "height": 1024,
@@ -36,7 +36,7 @@
         ]
     },
     {
-        "tags":"favorite-2",
+        "tags":"active-fav",
         "viewBox": {
             "width":1150,
             "height": 1024,

@@ -42,9 +42,8 @@ body {
     --color-border: #979797;
 }
 
-
-
 svg {
     stroke: currentcolor; 
     fill: currentcolor;
 }
+

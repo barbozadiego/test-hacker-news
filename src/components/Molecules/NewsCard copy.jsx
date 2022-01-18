@@ -2,7 +2,6 @@ import { useState, useRef } from 'react'
 import Icon from '../Atoms/Icon'
 import useLocalStorage from '../../hooks/useLocalStorage'
 
-
 import '../../styles/news-card.css'
 
 const NewsCard = ({author, title, url, created, news, id}) => {
@@ -11,26 +10,27 @@ const NewsCard = ({author, title, url, created, news, id}) => {
 
     const [favIcon, setFavIcon] = useState('disabled-fav')
 
-    // const [currentFav, setCurrentFav] = useState([])
-    const [localStorage, setLocalStorage] = useLocalStorage('faves', [])
-    let uva = []
+    const [currentFav, setCurrentFav] = useState([])
+    const [favNews, setFavNews] = useLocalStorage('faves')
+
 
     const toggleFaves = e => {
         e.stopPropagation()
+        favesCard.current.classList.toggle('classActive')
 
         let fav = news.filter(n => n.id === id)[0]
+        // fav = JSON.stringify(fav)
       
-        
-        if(favesCard.current.className === 'card') {
+
+        if(favesCard.current.className === 'card classActive') {
             setFavIcon('active-fav')
-            favesCard.current.classList.add('classActive')
+            
+            setCurrentFav(currentFav.push(fav))
+            setFavNews(currentFav)
+           
         } else {
             setFavIcon('disabled-fav')
-            favesCard.current.classList.remove('classActive')
         }
-        
-        // setLocalStorage(uva)
-        console.log(uva)
     }
 
 

@@ -1,23 +1,24 @@
-import { useState, useEffect, useRef } from 'react'
-import { useLocation } from 'react-router-dom'
-import useFetch from '../../hooks/useFetch'
+// import { useState, useEffect, useRef } from 'react'
+import { useState, useRef } from 'react'
 
 import Header from '../Organisms/Header'
-import MainMenu from '../Atoms/MainMenu'
-import GridNews from '../Templates/GridNews'
-import Loader from '../Molecules/Loader'
+import AllNews from '../Organisms/AllNews'
+import FaveNews from '../Organisms/FaveNews'
+import Icon from '../Atoms/Icon'
+
+import useFetch from '../../hooks/useFetch'
+
 
 import '../../styles/home.css'
-import Icon from '../Atoms/Icon'
 
 
 const Home = () => {
 
     const select = useRef(),
-          location = useLocation()
+          menu = useRef()
 
-    // const [favesNews, setFavesNews] = useState()
-    const [query, setQuery] = useState('Select your news')
+    const [query, setQuery] = useState('Select your news'),
+          [content, setContent] = useState('All')
 
     const news = useFetch(query === 'Select your news' ? 'angular' : query)
 
@@ -27,9 +28,20 @@ const Home = () => {
     } 
 
     const showQuery = () => select.current.classList.toggle('display-picker')
+    
+
+    const showContent = e => {
+         setContent(e.target.textContent)
+
+         let list = Array.from(menu.current.children),
+             withClass = list.filter(el => el.className === 'active')
+
+         if(withClass) withClass.forEach(el => el.classList.remove('active'))
+            e.target.classList.add('active')
+    }
 
 
-    // useEffect(() => {
+        // useEffect(() => {
     //     select.current.className === 'display-picker' && window.addEventListener('click', () => alert('click'))     
     //     return () => window.removeEventListener('click', window)
     // })
@@ -38,8 +50,15 @@ const Home = () => {
     return (
         <>
          <Header />
-         <MainMenu />
+         <nav>
+            <ul ref={menu} className="menu">
+                <li onClick={showContent} className='active'>All</li>
+                <li onClick={showContent}>My Faves</li>
+            </ul>
+        </nav>
+
          <section className='section-news'>
+            
             <div className="box-news">
                 <div className="news-select" onClick={showQuery}> 
                     { 
@@ -56,20 +75,16 @@ const Home = () => {
             </div>
 
             {
-                news 
-                ?  <div className="grid-news">
-                        {
-                            location.pathname === '/' 
-                             ? <GridNews news={news} />
-                             : console.log(location)
-                        }
-                    </div>
-
-                :  <div className='box-loader'>
-                     <Loader message='Getting data from server...' />  
-                   </div>
+                content === 'All'
+                    ? <AllNews news={news} />
+                    : <FaveNews />
             }
+            
 
+            <div className="box-paginate">
+                
+
+            </div>
              
          </section>
         </>

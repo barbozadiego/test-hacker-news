@@ -11,18 +11,19 @@ const useFetch = (query) => {
 
             let allNews = [] 
             
-            data.hits.forEach(el => {
-                if(el.author !== null && el.story_title !== null && el.story_url !== null && el.created !== null) {
+            data.hits.forEach(n => {
+                if(n.author !== null && n.story_title !== null && n.story_url !== null && n.created !== null) {
                     allNews.push({
-                        "author": el.author,
-                        "title": el.story_title,
-                        "url": el.story_url,
-                        "created": el.created_at
+                        "id": n.created_at_i,
+                        "author": n.author,
+                        "title": n.story_title,
+                        "url": n.story_url,
+                        "created": n.created_at
                     })
                 }
             })
 
-            setNews(allNews)
+            setNews(allNews.slice(0,8))
         })
 
     }, [query])
