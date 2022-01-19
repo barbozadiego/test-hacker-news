@@ -11,6 +11,7 @@ const AllNews = ({ news }) => {
                             news.map(n => 
                             <NewsCard 
                                 id={n.id}
+                                className={n.className}
                                 key={n.id}
                                 author={n.author}
                                 title={n.title}

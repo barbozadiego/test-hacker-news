@@ -24,7 +24,12 @@ const Home = () => {
 
     const [query, setQuery] = useLocalStorage('query', 'Select your news')
     const news = useFetch(query === 'Select your news' ? 'angular' : query, queryPage)
+    
+    const [newsStorage, setNewsStorage] = useLocalStorage('allNews', [])
 
+    useEffect(() => {
+        setNewsStorage(newsStorage)
+    })
 
 
 /*----------------------------------| Functionalities |----------------------------------*/

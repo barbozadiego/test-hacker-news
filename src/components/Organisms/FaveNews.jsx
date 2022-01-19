@@ -20,6 +20,7 @@ const FaveNews = () => {
                             faveNews.map(n => 
                             <NewsCard 
                                 id={n.id}
+                                className={n.className}
                                 key={n.id}
                                 author={n.author}
                                 title={n.title}

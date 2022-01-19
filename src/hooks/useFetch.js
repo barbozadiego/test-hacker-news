@@ -20,7 +20,8 @@ const useFetch = ( query, page ) => {
                         "author": n.author,
                         "title": n.story_title,
                         "url": n.story_url,
-                        "created": n.created_at
+                        "created": n.created_at,
+                        "className": 'card-disabled'
                     })
                 }
             })
