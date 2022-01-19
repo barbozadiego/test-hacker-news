@@ -1,0 +1,84 @@
+
+/*--------------------------------| Screen up to 1400px width |--------------------------------*/
+@media screen and (max-width: 1400px) {
+
+    body { font-size: 14px; }
+
+
+}
+
+/*--------------------------------| Screen up to 1024px width |--------------------------------*/
+@media screen and (max-width: 1024px) {
+
+    body { font-size: 13px; }
+
+
+}
+
+
+/*--------------------------------| Screen up to 900px width |--------------------------------*/
+@media screen and (max-width: 900px) {
+
+    body { font-size: 12px; }
+
+
+  
+
+    .news-content {
+        min-height: 6em;
+    }
+}
+
+    
+/*--------------------------------| Screen up to 767px width |--------------------------------*/
+@media screen and (max-width: 767px) {
+    
+    body { font-size: 11px; }
+
+    .card a {
+        width: 80%;
+    }
+    
+    .box-favorite {
+        width: 20%;
+    }
+    
+    .grid-news {
+        grid-template-columns: 1fr;
+        column-gap: 0;
+    }
+
+    .menu {
+        font-size: 1.3em;
+    }
+
+    .box-news {
+        font-size: 1.1em;
+    }
+
+    .news-content {
+        font-size: 1.1em;
+    }
+
+
+}
+    
+/*--------------------------------| Screen up to 480px width |--------------------------------*/
+@media screen and (max-width: 480px) {
+    
+    body { font-size: 10px; }
+
+
+
+    
+}   
+    
+    /*--------------------------------| Screen up to 320px width |--------------------------------*/
+    
+@media screen and (max-width: 320px) {
+    
+    body { font-size: 8px; }
+    
+     
+    
+}

@@ -1,7 +1,7 @@
 import NewsCard from '../Molecules/NewsCard'
 import Loader from '../Molecules/Loader'
 
-import '../../styles/section-news.css'
+// import '../../styles/section-news.css'
 
 const SectionNews = ({ news }) => {
     return (
@@ -18,7 +18,6 @@ const SectionNews = ({ news }) => {
                                 title={n.title}
                                 url={n.url}
                                 created={n.created}
-                                news={news}
                             />)   
                         }
                     </div>

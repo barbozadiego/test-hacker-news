@@ -1,7 +1,10 @@
 
 .card {
-    display: grid;
-    grid-template-columns: 87% 13%;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    /* display: grid; */
+    /* grid-template-columns: 87% 13%; */
     border-radius: .4em;
     border: solid 1px var(--color-border);
     background-color: #fff;
@@ -13,12 +16,11 @@
 }
 
 .card a {
-    display: flex;
-    align-items: center;
+    width: 85%;
+    display: block;
 }
 
 .news-content {
-    width: 100%;
     min-height: 5em;
     padding: 1em 1.3em 1em 1.5em;
 }
@@ -30,6 +32,7 @@
 }
 
 .box-favorite {
+    width: 15%;
     background-color: var(--color-box-fav);
     display: flex;
     justify-content: center;

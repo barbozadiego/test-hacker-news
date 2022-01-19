@@ -1,4 +1,3 @@
-
 import icons from '../../icons.json'
 
 const Icon = ({ tags, className }) => {

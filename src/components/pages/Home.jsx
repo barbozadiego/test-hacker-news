@@ -1,13 +1,12 @@
-// import { useState, useRef } from 'react'
 import { useState, useEffect, useRef } from 'react'
+import { Link } from 'react-router-dom'
 import useLocalStorage from '../../hooks/useLocalStorage'
+import useFetch from '../../hooks/useFetch'
 
-import Header from '../Organisms/Header'
 import AllNews from '../Organisms/AllNews'
 import FaveNews from '../Organisms/FaveNews'
 import Icon from '../Atoms/Icon'
 
-import useFetch from '../../hooks/useFetch'
 import '../../styles/home.css'
 
 
@@ -16,33 +15,31 @@ const Home = () => {
     const select = useRef(),
           menu = useRef(),
           pages = useRef()
+        //   newsPerPage = 8
 
-    const [content, setContent] = useState('All')
+    const [content, setContent] = useState('All'),
+          [pageCount, setPageCount] = useState(0),
+          [queryPage, setQueryPage] = useState(0)
+        //   [itemCount, setItemCount] = useState(0)
 
-    const [currentPage, setCurrentPage] = useState(0),
-          [query, setQuery] = useLocalStorage('query', 'Select your news')
+    const [query, setQuery] = useLocalStorage('query', 'Select your news')
+    const news = useFetch(query === 'Select your news' ? 'angular' : query, queryPage)
+    const [newsStorage, setNewsStorage] = useLocalStorage('allNews', [])
 
-    const news = useFetch(query === 'Select your news' ? 'angular' : query, currentPage)
-
-
-    const prevPage = () => setCurrentPage(currentPage - 1)
-
-    const nextPage = () => setCurrentPage(currentPage + 1)
+    useEffect(() => {
+         setNewsStorage(news)
+    }, [news, setNewsStorage])
 
 
-    const changePage = e => {
-        // setCurrentPage(parseInt(e.target.textContent,10))
-        console.log(currentPage)
-    }
-
+    const prevPage = () => setPageCount(pageCount > 0 ? pageCount - 1 : pageCount)
+    const nextPage = () => setPageCount(pageCount < newsStorage.length ? pageCount + 1 : pageCount)
+    const changePage = e => console.log(pageCount)
+    const showQuery = () => select.current.classList.toggle('display-picker')
 
     const selectQuery = (e) => {
         select.current.classList.toggle('display-picker')
         setQuery(e.target.textContent)
     } 
-
-    const showQuery = () => select.current.classList.toggle('display-picker')
-    
 
     const showContent = e => {
          setContent(e.target.textContent)
@@ -54,29 +51,24 @@ const Home = () => {
             e.target.classList.add('active')
     }
 
-
     useEffect(() => {
-        if(news) {
+        if(news && newsStorage) {
             let allPages = [...pages.current.children],
                 withClass = allPages.filter(p => p.className === 'page page-active')
 
             if(withClass) withClass.forEach(p => p.classList.remove('page-active'))
-            allPages[currentPage].classList.add('page-active')
+            allPages[pageCount].classList.add('page-active')
         } 
     })
 
 
-        // useEffect(() => {
-    //     select.current.className === 'display-picker' && window.addEventListener('click', () => alert('click'))     
-    //     return () => window.removeEventListener('click', window)
-    // })
-
-
-
     return (
         <>
-         <Header />
-         <nav>
+         <header>
+           <Link to='/'><img src="/images/hacker-news.svg" alt="hacker-news-logo" /></Link>
+        </header>
+
+        <nav>
             <ul ref={menu} className="menu">
                 <li onClick={showContent} className='active'>All</li>
                 <li onClick={showContent}>My Faves</li>
@@ -99,28 +91,32 @@ const Home = () => {
                 </ul>
                 <span onClick={showQuery} className='arrow-down'><Icon tags='arrow-down'/></span>
             </div>
+            
             {
-                news && content === 'All'
-                    ? <AllNews news={news} />
+                content === 'All'
+                    ? <AllNews news={ newsStorage } />
                     : <FaveNews />
             }
             
-            <div className="box-paginate">
-                <span onClick={prevPage} className='arrow-left'><Icon tags='arrow-left' /></span>
+            {   newsStorage &&
+                <div className="box-paginate">
+                    <span onClick={prevPage} className='arrow-left'><Icon tags='arrow-left' /></span>
 
-                <div ref={pages} className="pages">
-                    {
-                      news && news.map((p,i) => <span 
-                                                 onClick={changePage}
-                                                 className='page' 
-                                                 key={i}>
-                                                       {i+1}
-                                                </span>)
-                    }
+                    <div ref={pages} className="pages">
+                        {
+                          newsStorage.slice(0, 9).map((p,i) => 
+                                <span 
+                                    onClick={changePage}
+                                    className='page' 
+                                    key={i}>
+                                        {i+1}
+                                </span>)    
+                        }
+                    </div>
+
+                    <span onClick={nextPage} className='arrow-right'><Icon tags='arrow-right' /></span>
                 </div>
-
-                <span onClick={nextPage} className='arrow-right'><Icon tags='arrow-right' /></span>
-            </div>
+            }
              
          </section>
         </>

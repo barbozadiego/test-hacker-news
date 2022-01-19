@@ -1,52 +1,58 @@
 import { useState, useEffect, useRef } from 'react'
-import Icon from '../Atoms/Icon'
 import useLocalStorage from '../../hooks/useLocalStorage'
+
+import Icon from '../Atoms/Icon'
 import moment from 'moment'
 
 import '../../styles/news-card.css'
 
 
 
-const NewsCard = ({author, title, url, created, news, id}) => {
+const NewsCard = ({author, title, url, created, id}) => {
         
-    const favesCard = useRef()
+    const newsCard = useRef()
 
-    const [ago, setAgo] = useState()
-    const [favIcon, setFavIcon] = useState('disabled-fav')
-    const [localStorage, setLocalStorage] = useLocalStorage('faves', [])
+    const [ago, setAgo] = useState(),
+          [favIcon, setFavIcon] = useState('disabled-fav'),
+          [newsStorage, setNewsStorage] = useState()
 
+    const [favesStorage, setFavesStorage] = useLocalStorage('favesNews', [])
+    
+
+/*----------------------------------| Functions |----------------------------------*/
+
+    const toggleFaves = e => {
+        e.stopPropagation()
+
+        let fav = newsStorage.filter(n => n.id === id)[0]
+
+        if(newsCard.current.className === 'card') {
+            setFavIcon('active-fav')
+            newsCard.current.classList.add('classActive')
+        } else {
+            setFavIcon('disabled-fav')
+            newsCard.current.classList.remove('classActive')
+        }
+
+        setFavesStorage([...favesStorage, fav])
+    }
+
+/*----------------------------------| Effects |----------------------------------*/
 
     useEffect(() => {
         setAgo(moment(created).fromNow())
     }, [created])
 
 
-
-    const toggleFaves = e => {
-        e.stopPropagation()
-
-        let fav = news.filter(n => n.id === id)[0]
-
-        if(favesCard.current.className === 'card') {
-            setFavIcon('active-fav')
-            favesCard.current.classList.add('classActive')
-        } else {
-            setFavIcon('disabled-fav')
-            favesCard.current.classList.remove('classActive')
-        }
-
-        setLocalStorage([...localStorage, fav])
-        
-        
-        // if(favIcon === 'active-fav' && favesCard.current.className === 'card') setLocalStorage([...localStorage, fav])
-        // setLocalStorage([...localStorage, fav])
-        // console.log(localStorage)
-    }
+    useEffect(() => {
+        const allNews = window.localStorage.getItem('allNews')
+        if(allNews) setNewsStorage(JSON.parse(allNews)) 
+    }, [])
 
 
 
     return(
-        <article ref={favesCard} className="card" id={id}>
+        <article ref={newsCard} className="card" id={id}>
             <a href={url} rel="noopener noreferrer" target="_blank">
                 <div className="news-content">
                     <span className='timer'>
