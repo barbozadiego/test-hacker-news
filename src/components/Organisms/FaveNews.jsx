@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import NewsCard from '../Molecules/NewsCard'
 
-const SectionNews = () => {
+const FaveNews = () => {
 
     const [faveNews, setFaveNews] = useState()
 
@@ -25,6 +25,7 @@ const SectionNews = () => {
                                 title={n.title}
                                 url={n.url}
                                 created={n.created}
+                                news={faveNews}
                             />)   
                         }
                     </div>
@@ -37,4 +38,4 @@ const SectionNews = () => {
     )
 }
 
-export default SectionNews
+export default FaveNews

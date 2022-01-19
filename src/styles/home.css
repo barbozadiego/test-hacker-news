@@ -1,9 +1,14 @@
+/*____________________________________________|  Header  |____________________________________________*/
+
 header {
     padding: 2.5em 15%;
     background: linear-gradient(to bottom, #ececec -32%, #fff 124%);
     box-shadow: 0 1px 5px 0 rgba(0, 21, 41, 0.12);
     margin-bottom: 4em;
 }
+
+
+/*____________________________________________|  Nav  |____________________________________________*/
 
 nav {
     display: flex;
@@ -44,7 +49,7 @@ nav {
 }
 
 
-/*------------------------------------------------------------------*/
+/*____________________________________________|  News | SELECT*  |____________________________________________*/
 
 
 .arrow-down svg {
@@ -87,7 +92,6 @@ nav {
     color: var(--color-news-title);
     background-color: #fff;
     box-shadow: 0 2px 2px 0 #dad8d8;
-	/* border: .001em solid var(--color-border); */
     border-radius: .3em;
     position: absolute;
     z-index: 1;
@@ -119,6 +123,47 @@ nav {
     display: inline-block !important;
     transform: translateY(1em);
 }
+
+
+/*____________________________________________|  Section News  |____________________________________________*/
+
+
+.section-news {
+    margin: 0 15%;
+}
+
+.grid-news {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: space-evenly;
+    row-gap: 1.5em;
+    column-gap: 2em;
+    margin-bottom: 5em;
+}
+
+.box-loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.no-news-yet {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 30vh;
+    margin-bottom: 3em;
+}
+
+.no-news-yet h2 {
+    font-size: 2em;
+    font-weight: 500;
+    color: var(--color-news-title);
+}
+
+
+/*____________________________________________|  Paginate  |____________________________________________*/
+
 
 .box-paginate {
     margin-bottom: 5em;

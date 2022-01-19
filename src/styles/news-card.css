@@ -1,10 +1,9 @@
+/*____________________________________________|  Layout News Card  |____________________________________________*/
 
 .card {
     width: 100%;
     display: flex;
     justify-content: space-evenly;
-    /* display: grid; */
-    /* grid-template-columns: 87% 13%; */
     border-radius: .4em;
     border: solid 1px var(--color-border);
     background-color: #fff;

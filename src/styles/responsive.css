@@ -1,38 +1,34 @@
 
-/*--------------------------------| Screen up to 1400px width |--------------------------------*/
-@media screen and (max-width: 1400px) {
+/*__________________________________| Screen up to 1400px width |__________________________________*/
 
+@media screen and (max-width: 1400px) {
     body { font-size: 14px; }
 
-
 }
 
-/*--------------------------------| Screen up to 1024px width |--------------------------------*/
-@media screen and (max-width: 1024px) {
 
+/*__________________________________| Screen up to 1024px width |__________________________________*/
+
+@media screen and (max-width: 1024px) {
     body { font-size: 13px; }
 
-
 }
 
 
-/*--------------------------------| Screen up to 900px width |--------------------------------*/
+/*__________________________________| Screen up to 900px width |__________________________________*/
+
 @media screen and (max-width: 900px) {
-
     body { font-size: 12px; }
-
-
-  
 
     .news-content {
         min-height: 6em;
     }
 }
 
-    
-/*--------------------------------| Screen up to 767px width |--------------------------------*/
+
+/*__________________________________| Screen up to 767px width |__________________________________*/
+
 @media screen and (max-width: 767px) {
-    
     body { font-size: 11px; }
 
     .card a {
@@ -60,25 +56,21 @@
         font-size: 1.1em;
     }
 
-
 }
-    
-/*--------------------------------| Screen up to 480px width |--------------------------------*/
+
+
+/*__________________________________| Screen up to 480px width |__________________________________*/
+
 @media screen and (max-width: 480px) {
-    
     body { font-size: 10px; }
 
+}
 
 
-    
-}   
-    
-    /*--------------------------------| Screen up to 320px width |--------------------------------*/
+/*__________________________________| Screen up to 320px width |__________________________________*/
     
 @media screen and (max-width: 320px) {
-    
     body { font-size: 8px; }
-    
      
     
 }

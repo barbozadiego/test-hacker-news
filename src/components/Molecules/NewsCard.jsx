@@ -19,7 +19,7 @@ const NewsCard = ({author, title, url, created, id}) => {
     const [favesStorage, setFavesStorage] = useLocalStorage('favesNews', [])
     
 
-/*----------------------------------| Functions |----------------------------------*/
+/*----------------------------------| Functionalities |----------------------------------*/
 
     const toggleFaves = e => {
         e.stopPropagation()
