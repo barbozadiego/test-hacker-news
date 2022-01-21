@@ -27,6 +27,7 @@
     align-items: center;
     color: rgba(0, 0, 0, 0.65);
     background-color: #fff;
+    user-select: none;
 }
 
 .pages span:not(:last-child) {
@@ -55,3 +56,5 @@
     background-color: var(--color-menu-active) !important;
     color: #fff !important;
 }
+
+

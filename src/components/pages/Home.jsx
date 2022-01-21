@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom'
 import { useState, useRef } from 'react'
-import useFetch from '../../hooks/useFetch'
 import useLocalStorage from '../../hooks/useLocalStorage'
 
 import News from '../Organisms/News'
@@ -9,16 +8,13 @@ import Icon from '../Atoms/Icon'
 import '../../styles/home.css'
 
 
-
 const Home = () => {
 
     const select = useRef(),
           menu = useRef()
 
-    const [queryPage, setQueryPage] = useState(0)
-
+    const [content, setContent] = useState('All')
     const [query, setQuery] = useLocalStorage('query', 'Select your news')
-    const news = useFetch(query === 'Select your news' ? 'angular' : query, queryPage)
 
 
 /*----------------------------------| Functionalities |----------------------------------*/
@@ -32,12 +28,15 @@ const Home = () => {
     } 
 
     const showContent = e => {
+         setContent(e.target.textContent)
+
          let list = Array.from(menu.current.children),
              withClass = list.filter(el => el.className === 'active')
 
          if(withClass) withClass.forEach(el => el.classList.remove('active'))
             e.target.classList.add('active')
     }
+
 
 
     return (
@@ -69,7 +68,7 @@ const Home = () => {
                 <span onClick={showQuery} className='arrow-down'><Icon tags='arrow-down'/></span>
             </div>
             
-            <News news={news}  />
+            <News content={content} query={query}   />
              
          </section>
         </>

@@ -1,3 +1,27 @@
+/*____________________________________________|  Section News  |____________________________________________*/
+
+
+.section-news {
+    margin: 0 15%;
+}
+
+.grid-news {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: space-evenly;
+    row-gap: 1.5em;
+    column-gap: 2em;
+    margin-bottom: 5em;
+    min-height: 25vh;
+}
+
+.box-loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
 /*____________________________________________|  Layout News Card  |____________________________________________*/
 
 .card {
@@ -8,6 +32,7 @@
     border: solid 1px var(--color-border);
     background-color: #fff;
     overflow: hidden;
+    max-height: 5em;
 }
 
 .card:hover {
@@ -62,3 +87,23 @@
     color: var(--color-timer-active);
     margin-right: .7em;
 }
+
+
+.no-news-yet {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 30vh;
+    margin: 5em 0;
+}
+
+.no-news-yet h2 {
+    font-size: 2em;
+    font-weight: 500;
+    color: var(--color-news-title);
+    border: 1px solid var(--color-border);
+    border-radius: .5em;
+    padding: 2em 5em;
+    background-color: #fff;
+}
+

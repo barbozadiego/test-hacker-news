@@ -5,22 +5,35 @@ import '../../styles/paginate.css'
 const Paginate = ({news}) => {
 
     const pages = useRef()
-        //   newsPerPage = 8
 
-   const [pageCount, setPageCount] = useState(0)
+    const [pageCount, setPageCount] = useState(0)
+
 
     const prevPage = () => {
         setPageCount(pageCount > 0 ? pageCount - 1 : pageCount)
     } 
 
     const nextPage = () => {
-        setPageCount(pageCount < news.length ? pageCount + 1 : pageCount)
+        // setPageCount(pageCount < news.length ? pageCount + 1 : pageCount)
+        setPageCount(pageCount < 7 ? pageCount + 1 : pageCount)
     } 
 
-    const changePage = e => console.log(pageCount)
+    const changePage = e => {
+        e.stopPropagation()
+        console.log(e.target.textContent, 10)
+    } 
 
 
-    /*----------------------------------| Effects |----------------------------------*/
+/*----------------------------------| Effects    |----------------------------------*/
+
+    // useEffect(() => {
+    //     let item = (pageCount * newsPerPage - newsPerPage) % news.length
+
+    //     setCurrentNews(news.slice(item, item + newsPerPage))
+    //     setItemCount(Math.ceil(news.length / newsPerPage))
+
+    // }, [pageCount, news])
+
 
     useEffect(() => {
         if(news) {
@@ -39,7 +52,7 @@ const Paginate = ({news}) => {
 
             <div ref={pages} className="pages">
                 {
-                 news &&  news.slice(0, 9).map((p,i) => 
+                news &&  news.slice(0, 8).map((p,i) => 
                         <span 
                             onClick={changePage}
                             className='page' 
@@ -52,6 +65,6 @@ const Paginate = ({news}) => {
             <span onClick={nextPage} className='arrow-right'><Icon tags='arrow-right' /></span>
         </div>
      )
-    }
+}
 
 export default Paginate 

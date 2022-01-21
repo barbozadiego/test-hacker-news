@@ -125,41 +125,8 @@ nav {
 }
 
 
-/*____________________________________________|  Section News  |____________________________________________*/
 
 
-.section-news {
-    margin: 0 15%;
-}
-
-.grid-news {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    justify-content: space-evenly;
-    row-gap: 1.5em;
-    column-gap: 2em;
-    margin-bottom: 5em;
-}
-
-.box-loader {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.no-news-yet {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 30vh;
-    margin-bottom: 3em;
-}
-
-.no-news-yet h2 {
-    font-size: 2em;
-    font-weight: 500;
-    color: var(--color-news-title);
-}
 
 
 
