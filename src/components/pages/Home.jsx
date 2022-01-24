@@ -1,11 +1,12 @@
 import { Link } from 'react-router-dom'
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import useLocalStorage from '../../hooks/useLocalStorage'
 
-import News from '../Organisms/News'
 import Icon from '../Atoms/Icon'
+import Paginate from '../Organisms/Paginate'
 
 import '../../styles/home.css'
+
 
 
 const Home = () => {
@@ -13,8 +14,15 @@ const Home = () => {
     const select = useRef(),
           menu = useRef()
 
-    const [content, setContent] = useState('All')
+    // const [currentQuery, setCurrentQuery] = useState('All')
     const [query, setQuery] = useLocalStorage('query', 'Select your news')
+
+
+/*----------------------------------| Effects |----------------------------------*/
+
+    useEffect(() => {
+        setQuery(query)
+    }, [query, setQuery])
 
 
 /*----------------------------------| Functionalities |----------------------------------*/
@@ -28,7 +36,7 @@ const Home = () => {
     } 
 
     const showContent = e => {
-         setContent(e.target.textContent)
+         setQuery(e.target.textContent)
 
          let list = Array.from(menu.current.children),
              withClass = list.filter(el => el.className === 'active')
@@ -37,8 +45,8 @@ const Home = () => {
             e.target.classList.add('active')
     }
 
-
-
+/*----------------------------------| Return |----------------------------------*/
+ 
     return (
         <>
          <header>
@@ -67,9 +75,8 @@ const Home = () => {
                 </ul>
                 <span onClick={showQuery} className='arrow-down'><Icon tags='arrow-down'/></span>
             </div>
-            
-            <News content={content} query={query}   />
-             
+
+            <Paginate itemsPerPage={8} query={query === 'Select your news' ? 'angular' : query} />
          </section>
         </>
     )
