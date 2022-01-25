@@ -8,13 +8,12 @@ import Paginate from '../Organisms/Paginate'
 import '../../styles/home.css'
 
 
-
 const Home = () => {
 
     const select = useRef(),
           menu = useRef()
 
-    // const [currentQuery, setCurrentQuery] = useState('All')
+    const [content, setContent] = useState('All')
     const [query, setQuery] = useLocalStorage('query', 'Select your news')
 
 
@@ -36,7 +35,7 @@ const Home = () => {
     } 
 
     const showContent = e => {
-         setQuery(e.target.textContent)
+         setContent(e.target.textContent)
 
          let list = Array.from(menu.current.children),
              withClass = list.filter(el => el.className === 'active')
@@ -76,7 +75,7 @@ const Home = () => {
                 <span onClick={showQuery} className='arrow-down'><Icon tags='arrow-down'/></span>
             </div>
 
-            <Paginate itemsPerPage={8} query={query === 'Select your news' ? 'angular' : query} />
+            <Paginate itemsPerPage={8} content={content} query={query === 'Select your news' ? 'angular' : query} />
          </section>
         </>
     )

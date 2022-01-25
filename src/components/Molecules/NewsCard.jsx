@@ -1,9 +1,15 @@
 import moment from 'moment'
 import Icon from '../Atoms/Icon'
 
+import { useRef } from 'react'
+
+
 const Card = ({id, created, title, author, url, favIcon, toggleFaves}) => {
+    
+    const currentCard = useRef()
+
     return (
-        <article className="card" id={id}>
+        <article ref={currentCard} className="card" id={id}>
             <a href={url} rel="noopener noreferrer" target="_blank">
                 <div className="news-content">
                     <span className='timer'>
@@ -16,7 +22,7 @@ const Card = ({id, created, title, author, url, favIcon, toggleFaves}) => {
             
 
             <div className="box-favorite">
-                <span onClick={toggleFaves} className='favorite'>
+                <span onClick={ () => toggleFaves(currentCard.current)} className='favorite'>
                     <Icon tags={favIcon !== 'disabled-fav' ? 'active-fav' : 'disabled-fav'} /> 
                 </span>
             </div>
