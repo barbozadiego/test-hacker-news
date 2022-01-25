@@ -24,8 +24,8 @@ const NewsSection = ({ currentNews, content }) => {
         let addFav = allCards.filter(n => n.id === currentCard.id)[0],
             index = allCards.indexOf(addFav)
 
-        let removeFav = favesStorage.filter(n => n.id.toString() === currentCard.id)[0]
-            // indexRemove = favesStorage.indexOf(removeFav)
+        let removeFav = favesStorage.filter(n => n.id.toString() === currentCard.id)[0],
+            indexRemove = favesStorage.indexOf(removeFav)
 
         let repeatedCard = favesStorage.includes(removeFav)
       
@@ -33,20 +33,13 @@ const NewsSection = ({ currentNews, content }) => {
             newsToShow[index].favIcon = 'active-fav'
             setFavesStorage([...favesStorage, currentNews[index]])
         } else {
-            favesStorage[index].favIcon = 'disabled-fav'
-            // favesStorage.splice(indexRemove, 1)
-            // console.log('Se repite')
-            console.log(index)
+            newsToShow[index].favIcon = 'disabled-fav'
+            favesStorage.splice(indexRemove, 1)
+            setFavesStorage([...favesStorage])
         }
         
-
-
     }
 
-
-    // useEffect(() => {
-    //     setFavesStorage(favesStorage)
-    // }, [setFavesStorage, favesStorage])
 
 /*----------------------------------| Effects |----------------------------------*/
 
