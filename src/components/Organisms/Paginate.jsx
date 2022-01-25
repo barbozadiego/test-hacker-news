@@ -12,9 +12,9 @@ const Paginate = ({itemsPerPage, query, content }) => {
   const [currentNews, setCurrentNews] = useState(),
         [pageCount, setPageCount] = useState(0),
         [itemOffset, setItemOffset] = useState(0),
+        [numberPages, setNumberPages] = useState(),
         [page, setPage] = useState(0),
-        [news, setNews] = useState(),
-        [numberPages, setNumberPages] = useState()
+        [news, setNews] = useState()
 
 
 /*----------------------------------| Effects |----------------------------------*/

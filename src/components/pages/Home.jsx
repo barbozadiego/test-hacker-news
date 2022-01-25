@@ -43,6 +43,7 @@ const Home = () => {
          if(withClass) withClass.forEach(el => el.classList.remove('active'))
             e.target.classList.add('active')
     }
+    
 
 /*----------------------------------| Return |----------------------------------*/
  

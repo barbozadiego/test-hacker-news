@@ -1,8 +1,7 @@
-import moment from 'moment'
-import Icon from '../Atoms/Icon'
-
 import { useRef } from 'react'
 
+import moment from 'moment'
+import Icon from '../Atoms/Icon'
 
 const Card = ({id, created, title, author, url, favIcon, toggleFaves}) => {
     
