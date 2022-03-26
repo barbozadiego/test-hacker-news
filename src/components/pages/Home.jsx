@@ -11,28 +11,36 @@ import '../../styles/home.css'
 const Home = () => {
 
     const select = useRef(),
-          menu = useRef()
+          menu = useRef(),
+          arrowDown = useRef()
 
     const [content, setContent] = useState('All')
-    const [query, setQuery] = useLocalStorage('query', 'Select your news')
+    const [currentSelect, setCurrentSelect] = useLocalStorage('query', 'Select your news')
 
 
 /*----------------------------------| Effects |----------------------------------*/
 
     useEffect(() => {
-        setQuery(query)
-    }, [query, setQuery])
+        setCurrentSelect(currentSelect)
+    }, [currentSelect, setCurrentSelect])
 
 
 /*----------------------------------| Functionalities |----------------------------------*/
 
-
-    const showQuery = () => select.current.classList.toggle('display-picker')
-
-    const selectQuery = (e) => {
+    const selectListNews = (e) => {
         select.current.classList.toggle('display-picker')
-        setQuery(e.target.textContent)
+        setCurrentSelect(e.target.textContent)
     } 
+
+    const toggleListNews = () => {
+        select.current.classList.toggle('display-picker')
+        arrowDown.current.classList.toggle('animate-arrow')
+    }
+
+    const hideListNews = () => {
+        if(select.current.className === 'display-picker') toggleListNews()
+    }
+    
 
     const showContent = e => {
          setContent(e.target.textContent)
@@ -43,42 +51,45 @@ const Home = () => {
          if(withClass) withClass.forEach(el => el.classList.remove('active'))
             e.target.classList.add('active')
     }
-    
+
+
 
 /*----------------------------------| Return |----------------------------------*/
  
     return (
-        <>
-         <header>
+      <>
+        <header>
            <Link to='/'><img src="/images/hacker-news.svg" alt="hacker-news-logo" /></Link>
         </header>
         <nav>
-            <ul ref={menu} className="menu">
-                <li onClick={showContent} className='active'>All</li>
-                <li onClick={showContent}>My Faves</li>
+            <ul ref={menu} className="menu" onClick={showContent}>
+                <li className='active'>All</li>
+                <li>My Faves</li>
             </ul>
         </nav>
 
-         <section className='section-news'>
-             
-            <div className="box-news">
-                <div className="news-select" onClick={showQuery}> 
+        <section className='section-news'>
+            <div className="box-news" tabIndex="0" onBlur={hideListNews}>
+                <div className="news-select" onClick={toggleListNews}> 
                     { 
-                    query !== 'Select your news' && <img src={`/images/${query}.png`} alt={`${query}-logo`} />
+                      currentSelect !== 'Select your news' && 
+                      <img src={`/images/${currentSelect}.png`} alt={`${currentSelect}-logo`} />
                     }
-                    <span>{query}</span>
+                    <span>{currentSelect}</span>
                 </div>
-                <ul ref={select}>
-                    <li onClick={selectQuery}><img src="/images/angular.png" alt="angular-logo" />angular</li>
-                    <li onClick={selectQuery}><img src="/images/reactjs.png" alt="react-logo" />reactjs</li>
-                    <li onClick={selectQuery}><img src="/images/vuejs.png" alt="vue-logo" />vuejs</li>
+                <ul ref={select} onClick={selectListNews}>
+                    <li><img src="/images/angular.png" alt="angular-logo" />angular</li>
+                    <li><img src="/images/reactjs.png" alt="react-logo" />reactjs</li>
+                    <li><img src="/images/vuejs.png" alt="vue-logo" />vuejs</li>
                 </ul>
-                <span onClick={showQuery} className='arrow-down'><Icon tags='arrow-down'/></span>
+                <span ref={arrowDown} className='arrow-down'>
+                    <Icon tags='arrow-down'/>
+                </span>
             </div>
 
-            <Paginate itemsPerPage={8} content={content} query={query === 'Select your news' ? 'angular' : query} />
-         </section>
-        </>
+            <Paginate itemsPerPage={8} content={content} query={currentSelect === 'Select your news' ? 'angular' : currentSelect} />
+        </section>
+      </>
     )
 
 }

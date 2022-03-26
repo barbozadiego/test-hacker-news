@@ -59,7 +59,13 @@ nav {
     top: 0;
     bottom: 0;
     margin: auto 0;
+    pointer-events: none;
 }
+
+.animate-arrow svg {
+    transform: rotate(180deg);
+}
+
 
 .box-news {
     font-size: .9em;
@@ -117,12 +123,14 @@ nav {
     aspect-ratio: 1/1;
     object-fit: contain;
     margin-right: .8em;
+    pointer-events: none;
 }
 
 .display-picker {
     display: inline-block !important;
     transform: translateY(1em);
 }
+
 
 
 
