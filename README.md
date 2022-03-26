@@ -1,6 +1,12 @@
-# Test React - Hacker News
+# 🧪 Test React - Hacker News
+
+## Overview
 
 Technical test consisting of a small responsive web application to demonstrate my abilities with react.
+
+## App Interface
+
+![app-interface](https://user-images.githubusercontent.com/73412079/160034743-f959fd5a-283e-4b8c-8931-47d7cb03efc6.jpg)
 
 ## STACK
 
