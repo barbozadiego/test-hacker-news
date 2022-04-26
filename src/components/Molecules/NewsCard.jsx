@@ -1,9 +1,11 @@
 import { useRef } from 'react'
 
 import moment from 'moment'
-import Icon from '../Atoms/Icon'
 
-const Card = ({id, created, title, author, url, favIcon, toggleFaves}) => {
+import { FaHeart, FaRegHeart } from 'react-icons/fa'
+import { MdOutlineWatchLater } from 'react-icons/md'
+
+const NewsCard = ({id, created, title, author, url, favIcon, toggleFaves}) => {
     
     const currentCard = useRef()
 
@@ -12,7 +14,8 @@ const Card = ({id, created, title, author, url, favIcon, toggleFaves}) => {
             <a href={url} rel="noopener noreferrer" target="_blank">
                 <div className="news-content">
                     <span className='timer'>
-                        <Icon tags='timer' />{`${moment(created).fromNow()} by`} 
+                        <MdOutlineWatchLater />
+                        {`${moment(created).fromNow()} by`} 
                         <strong>{author}</strong>
                     </span>
                     <h2>{title}</h2>
@@ -22,11 +25,15 @@ const Card = ({id, created, title, author, url, favIcon, toggleFaves}) => {
 
             <div className="box-favorite">
                 <span onClick={ () => toggleFaves(currentCard.current)} className='favorite'>
-                    <Icon tags={favIcon !== 'disabled-fav' ? 'active-fav' : 'disabled-fav'} /> 
+                    {
+                        favIcon !== 'disabled-fav' 
+                            ? <FaHeart />
+                            : <FaRegHeart />
+                    }
                 </span>
             </div>
         </article>
     )
 } 
 
-export default Card
+export default NewsCard

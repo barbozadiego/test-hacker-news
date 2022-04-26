@@ -32,7 +32,7 @@
     border: solid 1px var(--color-border);
     background-color: #fff;
     overflow: hidden;
-    max-height: 5em;
+    /* max-height: 5em; */
 }
 
 .card:hover {
@@ -64,13 +64,13 @@
 }
 
 .favorite svg {
-    width: 1.65em;
+    font-size: 1.7em;
     color: var(--color-fav-active);
     cursor: pointer;
 }
 
 .timer {
-    font-size: .7em;
+    font-size: .725em;
     font-weight: 400;
     display: flex;
     align-items: center;
@@ -83,9 +83,9 @@
 }
 
 .timer svg {
-    width: 1.3em;
+    font-size: 1.5em;
     color: var(--color-timer-active);
-    margin-right: .7em;
+    margin-right: .4em;
 }
 
 

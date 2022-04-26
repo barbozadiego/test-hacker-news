@@ -1,27 +1,30 @@
-import { useEffect, useState } from 'react'
-import ReactPaginate from 'react-paginate'
+import { useEffect, useState, useContext } from 'react'
+import { FaAngleRight, FaAngleLeft } from 'react-icons/fa'
 
-import NewsSection from '../Molecules/NewsSection'
-import Icon from '../Atoms/Icon'
+import NewsContext from '../../context/NewsContext'
+import ReactPaginate from 'react-paginate'
+import News from './News'
 
 import '../../styles/paginate.css'
 
 
-const Paginate = ({itemsPerPage, query, content }) => {
+const Paginate = () => {
 
   const [currentNews, setCurrentNews] = useState(),
         [pageCount, setPageCount] = useState(0),
         [itemOffset, setItemOffset] = useState(0),
         [numberPages, setNumberPages] = useState(),
         [page, setPage] = useState(0),
-        [news, setNews] = useState()
+        [news, setNews] = useState(),
+        itemsPerPage = 8
 
 
-/*----------------------------------| Effects |----------------------------------*/
+  const {newsQuery} = useContext(NewsContext)
+
 
 
 useEffect(() => {
-  fetch(`https://hn.algolia.com/api/v1/search_by_date?query=${query}&page=${page}`)
+  fetch(`https://hn.algolia.com/api/v1/search_by_date?query=${newsQuery}&page=${page}`)
   .then(res => res.json())
   .then(data => {
       let items = [] 
@@ -41,7 +44,7 @@ useEffect(() => {
       setNews(items)
   })
 
-  }, [query, page])
+  }, [newsQuery, page])
 
 
 
@@ -69,14 +72,14 @@ useEffect(() => {
 
   return (
     <>
-      <NewsSection currentNews={currentNews} content={content} />
+      <News currentNews={currentNews} />
       <ReactPaginate
-        nextLabel={<Icon tags='arrow-right' />}
+        nextLabel={<FaAngleRight />}
         onPageChange={handlePageClick}
         pageRangeDisplayed={3}
         marginPagesDisplayed={2}
         pageCount={pageCount}
-        previousLabel={<Icon tags='arrow-left' />}
+        previousLabel={<FaAngleLeft />}
         pageClassName="page-item"
         // pageLinkClassName="page-link"
         previousClassName="page-item"

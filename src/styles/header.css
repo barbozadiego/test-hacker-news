@@ -1,0 +1,52 @@
+/*____________________________________________|  Header  |____________________________________________*/
+
+header {
+    padding: 2.5em 15%;
+    background: linear-gradient(to bottom, #ececec -32%, #fff 124%);
+    box-shadow: 0 1px 5px 0 rgba(0, 21, 41, 0.12);
+    margin-bottom: 4em;
+}
+
+
+/*____________________________________________|  Nav  |____________________________________________*/
+
+nav {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 3.5em;
+}
+
+.menu {
+    display: flex;
+    padding: 0 15%;
+    font-weight: 400;
+}
+
+.menu li {
+    font-size: .95em;
+    list-style: none;
+    cursor: pointer;
+    user-select: none;
+}
+
+.menu li a {
+    text-align: center;
+    display: block;
+    min-width: 6.3em;
+    font-weight: 500;
+    color: var(--color-timer-active);
+    border-radius: .15em;
+    padding: .5em 1.5em;
+    border: solid 1px var(--color-menu-disabled);
+}
+
+.menu li:hover a {
+    border: solid 1px var(--color-menu-active);
+    color: var(--color-menu-active);
+}
+
+
+.menu .active  {
+    border: solid 1px var(--color-menu-active) !important;
+    color: var(--color-menu-active) !important;
+}
