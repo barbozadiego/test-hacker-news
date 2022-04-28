@@ -32,7 +32,7 @@
     border: solid 1px var(--color-border);
     background-color: #fff;
     overflow: hidden;
-    /* max-height: 5em; */
+    max-height: 5.7em;
 }
 
 .card:hover {

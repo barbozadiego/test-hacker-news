@@ -1,87 +1,46 @@
-import { useState, useRef, useEffect, useContext } from 'react'
-import { FaAngular, FaVuejs, FaReact, FaAngleDown } from 'react-icons/fa'
+import { useState, useEffect, useContext } from 'react'
+import NewsContext from '../../context/NewsContext'
+import useLocalStorage from '../../hooks/useLocalStorage'
 
 import Header from '../Molecules/Header'
-import Paginate from '../Organisms/Paginate'
-import NewsContext from '../../context/NewsContext'
-
-import '../../styles/home.css'
-
+import NewsSection from '../Molecules/NewsSection'
 
 const Home = () => {
 
-    const selectionMenu = useRef(),
-          arrowDown = useRef()
+    const {newsQuery} = useContext(NewsContext),
+        //   [localeNews, setLocaleNews] = useLocalStorage('news', [])
+          [news, setNews] = useState()
 
-    const {newsQuery, setNewsQuery} = useContext(NewsContext)
-    const [currentNewsIcon, setCurrentNewsIcon] = useState()
-
-
-    useEffect(() => {
-        setNewsQuery(newsQuery)
-    }, [newsQuery, setNewsQuery])
-
-
-    const selectListNews = (e) => {
-        selectionMenu.current.classList.toggle('display-picker')
-        setNewsQuery(e.target.textContent)
-    } 
-
-
-    useEffect(() => {
-        switch (newsQuery) {
-            case 'angular':
-                setCurrentNewsIcon(<FaAngular />)
-                break;
-            case 'reactjs':
-                setCurrentNewsIcon(<FaReact />)
-                break;
-            case 'vuejs':
-                setCurrentNewsIcon(<FaVuejs />)
-                break;
-            default:
-                // setCurrentNewsIcon(<FaAngleDown />)
+    useEffect(async () => {
+        // fetch(`https://hn.algolia.com/api/v1/search_by_date?query=${newsQuery}&page=${page}`)
+        const query = await fetch(`https://hn.algolia.com/api/v1/search_by_date?query=${newsQuery}&page=0`),
+              currentNews = await query.json()
+        
+        if(currentNews) {
+            const newsList = [] 
+            currentNews.hits.forEach(n => {
+                if(n.author && n.story_title && n.story_url && n.created !== null) {
+                    newsList.push({
+                        "id": n.created_at_i,
+                        "author": n.author,
+                        "title": n.story_title,
+                        "url": n.story_url,
+                        "created": n.created_at,
+                        "favIcon": 'disabled-fav'
+                    })
+                }
+            })
+            setNews(newsList)
         }
     }, [newsQuery])
 
-
-
-    const toggleListNews = () => {
-        selectionMenu.current.classList.toggle('display-picker')
-        arrowDown.current.classList.toggle('animate-arrow')
-    }
-
-    const hideListNews = () => {
-        if(selectionMenu.current.className === 'display-picker') toggleListNews()
-    }
-
-
     return (
-      <>
-        <Header />
-        <section className='section-news'>
-            <div className="box-news"  onBlur={hideListNews}>
-            {/* <div className="box-news" tabIndex="0" onBlur={hideListNews}> */}
-                <div className="news-query" onClick={toggleListNews}> 
-                    { 
-                      newsQuery !== 'Select your news' && <span className={newsQuery}>{currentNewsIcon}</span>
-                    }
-                    <span>{newsQuery}</span>
-                </div>
-                <ul ref={selectionMenu} onClick={selectListNews}>
-                    <li><FaAngular />angular</li>
-                    <li><FaReact />reactjs</li>
-                    <li><FaVuejs />vuejs</li>
-                </ul>
-                <span ref={arrowDown} className='arrow-down'>
-                    <FaAngleDown />
-                </span>
-            </div>
-
-            {/* <Paginate content={content} query={newsQuery === 'Select your news' ? 'angular' : newsQuery} /> */}
-            <Paginate />
-        </section>
-      </>
+        <> 
+         <Header />
+         {
+            news && <NewsSection news={news} />
+         }
+        </>
     )
 
 }

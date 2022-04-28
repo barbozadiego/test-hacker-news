@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import { NewsProvider } from '../context/NewsContext'
 
 import Home from './Pages/Home'
 import Favorites from './Pages/Favorites'
@@ -11,7 +10,7 @@ const App = () => {
   return (
     <Router>
       <Routes>
-          <Route path='/' element={ <NewsProvider> <Home /> </NewsProvider>} />
+          <Route path='/' element={ <Home /> } />
           <Route path='/favorites' element={ <Favorites/>} />
       </Routes>
     </Router>

@@ -1,4 +1,4 @@
-import { createContext, useState } from "react"
+import { createContext, useState, useEffect } from "react"
 
 import useLocalStorage from '../hooks/useLocalStorage'
 
@@ -7,6 +7,8 @@ const NewsContext = createContext()
 const NewsProvider = ({children}) => {
 
     const [newsQuery, setNewsQuery] = useLocalStorage('query', 'Select your news')
+
+
 
 
     const data = { newsQuery, setNewsQuery }
