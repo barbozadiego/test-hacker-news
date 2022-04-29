@@ -1,33 +1,32 @@
+import { useState, useEffect, useContext } from 'react'
 import Header from '../Molecules/Header'
-import NewsSection from '../Molecules/NewsSection'
+import SelectNews from '../Molecules/SelectNews'
+import Paginate from '../Organisms/Paginate'
+import NewsContext from '../../context/NewsContext'
+// import { useState, useEffect } from 'react'
 
-import useLocalStorage from '../../hooks/useLocalStorage'
-
-import { useState, useEffect } from 'react'
 
 
 const Favorites = () => {
 
-    const [favesStorage, setFavesStorage] = useLocalStorage('favesStorage', [])
+  const {favesStorage} = useContext(NewsContext)
 
     return (
-        <>
-          <Header />
-          <NewsSection news={favesStorage} />
-        </>
+      <> 
+       <Header />
+       <section className='section-news'>
+          <SelectNews />
+          {
+            favesStorage.length > 0 
+                ? <Paginate news={favesStorage} />
+                : <div className='no-news-yet'>
+                      <h2>No news yet</h2>
+                  </div>   
+          }
+       </section>
+      </>
     )
 }
 
 export default Favorites
-
-
-/* <div className='no-news-yet'>
-<h2>No news yet</h2>
-</div>     */
-
-
-// const [favesStorage, setFavesStorage] = useLocalStorage('favesStorage', [])
-
-
-/*----------------------------------| Effects |----------------------------------*/
 
