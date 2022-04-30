@@ -20,9 +20,6 @@
 @media screen and (max-width: 900px) {
     body { font-size: 12px; }
 
-    .news-content {
-        min-height: 6em;
-    }
 }
 
 
@@ -31,14 +28,6 @@
 @media screen and (max-width: 767px) {
     body { font-size: 11px; }
 
-    .card a {
-        width: 80%;
-    }
-    
-    .box-favorite {
-        width: 20%;
-    }
-    
     .grid-news {
         grid-template-columns: 1fr;
         column-gap: 0;
@@ -64,9 +53,7 @@
 @media screen and (max-width: 480px) {
     body { font-size: 10px; }
 
-    .card {
-        max-height: 7em;
-    }
+
 
 }
 

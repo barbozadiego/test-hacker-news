@@ -12,7 +12,7 @@ const Favorites = () => {
     return (
       <> 
        <Header />
-       <section className='section-news'>
+       <section className='section-news faves'>
           {
             favesStorage.length > 0 
                 ? <Paginate news={favesStorage} numberPages={favesStorage.length / itemsPerPage} />

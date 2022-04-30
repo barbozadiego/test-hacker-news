@@ -10,7 +10,7 @@ import '../../styles/home.css'
 
 const Home = () => {
 
-    const {currentNews, numberPages, newsQuery, setNewsQuery} = useContext(NewsContext),
+    const {currentNews, numberPages, newsQuery, setNewsQuery, setPage} = useContext(NewsContext),
           [currentNewsIcon, setCurrentNewsIcon] = useState(),
           selectionMenu = useRef(),
           arrowDown = useRef()
@@ -36,6 +36,7 @@ const Home = () => {
             selectionMenu.current.classList.toggle('display-picker')
             setNewsQuery(e.target.textContent)
             arrowDown.current.classList.toggle('animate-arrow')
+            setPage(0)
     } 
 
     const hideListNews = () => {
@@ -51,7 +52,7 @@ const Home = () => {
     return (
         <> 
          <Header />
-         <section className='section-news'>
+         <section className='section-news home'>
             <div className="box-news" tabIndex="0" onBlur={hideListNews}>
                 <div className="news-query" onClick={toggleListNews}> 
                     { 

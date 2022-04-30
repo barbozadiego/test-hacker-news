@@ -35,24 +35,26 @@ const Items = ({ currentNews }) => {
     <>
       {
         currentNews && currentNews.length > 0
-          ? <div ref={newsGrid} className="grid-news">
-              {  
-                currentNews.map(item => 
-                    <NewsCard id={item.id}
-                              key={item.id}
-                              title={item.title}
-                              url={item.url}
-                              created={item.created}
-                              author={item.author}
-                              isFaves={ favesStorage.includes(favesStorage.filter(n => n.id === item.id)[0]) }
-                              toggleFaves={toggleFaves}
-                    />
-                )
-              }
+          ? <div className='container-grid-news'>
+              <div ref={newsGrid} className="grid-news">
+                {  
+                  currentNews.map(item => 
+                      <NewsCard id={item.id}
+                                key={item.id}
+                                title={item.title}
+                                url={item.url}
+                                created={item.created}
+                                author={item.author}
+                                isFaves={ favesStorage.includes(favesStorage.filter(n => n.id === item.id)[0]) }
+                                toggleFaves={toggleFaves}
+                      />
+                  )
+                }
+              </div>
             </div>
 
           :  <div className='box-loader'>
-                <Loader message='Getting data from server...' />  
+                <Loader message='Loading news...' />  
             </div>
       }
     </>
@@ -62,7 +64,7 @@ const Items = ({ currentNews }) => {
 
 const Paginate = ({news, numberPages}) => {
 
-  const {setPage, itemsPerPage} = useContext(NewsContext) 
+  const {page, setPage, itemsPerPage} = useContext(NewsContext) 
 
   const [currentNews, setCurrentNews] = useState(),
         [pageCount, setPageCount] = useState(),
@@ -76,13 +78,12 @@ const Paginate = ({news, numberPages}) => {
       }
     }, [itemOffset, itemsPerPage, news])
 
-
   const handlePageClick = e => {
     const newOffset = (e.selected * itemsPerPage) % news.length
     setItemOffset(newOffset)
     setPage(e.selected)
   }
-
+  
 
   return (
     <>
@@ -92,7 +93,7 @@ const Paginate = ({news, numberPages}) => {
         <ReactPaginate
           nextLabel={<FaAngleRight />}
           onPageChange={handlePageClick}
-          pageRangeDisplayed={3}
+          pageRangeDisplayed={2}
           marginPagesDisplayed={2}
           pageCount={pageCount}
           previousLabel={<FaAngleLeft />}
@@ -105,6 +106,7 @@ const Paginate = ({news, numberPages}) => {
           containerClassName="pagination"
           activeClassName="page-active"
           renderOnZeroPageCount={null}
+          forcePage={page}
           // breakLabel="..."
           // pageLinkClassName="page-link"
           // breakLinkClassName="page-link"

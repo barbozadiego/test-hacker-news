@@ -40,15 +40,19 @@ body {
 
 .section-news {
     margin: 0 15%;
+}
+
+.container-grid-news {
     min-height: 40vh;
+    margin-bottom: 4em;
 }
 
 .grid-news {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    justify-content: space-evenly;
-    row-gap: 1.5em;
-    column-gap: 2em;
-    margin-bottom: 3.5em;
+    gap: 1.2em;
 }
 
+.faves .grid-news  {
+    margin-top: 3.5em;
+}
