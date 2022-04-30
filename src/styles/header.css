@@ -34,19 +34,13 @@ nav {
     display: block;
     min-width: 6.3em;
     font-weight: 500;
-    color: var(--color-timer-active);
-    border-radius: .15em;
+    color: var(--color-grey-7);
+    border-radius: .18em;
     padding: .5em 1.5em;
-    border: solid 1px var(--color-menu-disabled);
+    border: 1px solid var(--color-grey-4);
 }
-
-.menu li:hover a {
-    border: solid 1px var(--color-menu-active);
-    color: var(--color-menu-active);
-}
-
 
 .menu .active  {
-    border: solid 1px var(--color-menu-active) !important;
-    color: var(--color-menu-active) !important;
+    color: var(--color-blue-1);
+    border: 1px solid var(--color-blue-1);
 }

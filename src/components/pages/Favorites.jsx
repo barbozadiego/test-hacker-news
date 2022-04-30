@@ -1,26 +1,26 @@
-import { useState, useEffect, useContext } from 'react'
+import { useEffect, useContext } from 'react'
 import Header from '../Molecules/Header'
-import SelectNews from '../Molecules/SelectNews'
 import Paginate from '../Organisms/Paginate'
 import NewsContext from '../../context/NewsContext'
-// import { useState, useEffect } from 'react'
-
+import { Link } from 'react-router-dom'
 
 
 const Favorites = () => {
 
-  const {favesStorage} = useContext(NewsContext)
+  const {favesStorage, itemsPerPage} = useContext(NewsContext)
 
     return (
       <> 
        <Header />
        <section className='section-news'>
-          <SelectNews />
           {
             favesStorage.length > 0 
-                ? <Paginate news={favesStorage} />
-                : <div className='no-news-yet'>
-                      <h2>No news yet</h2>
+                ? <Paginate news={favesStorage} numberPages={favesStorage.length / itemsPerPage} />
+                : <div className='alert'>
+                      <hgroup>
+                        <h1>Looks like you don't have favorites yet</h1>
+                        <h2><Link to='/'>Explore News</Link></h2>
+                      </hgroup>
                   </div>   
           }
        </section>

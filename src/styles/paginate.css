@@ -11,7 +11,7 @@
 .page-item {
     width: 2.4em;
     height: 2.4em;
-    color: var(--color-timer-active);
+    color: var(--color-grey-7);
     border: .1em solid rgba(0, 0, 0, .3);
     border-radius: .5em;
     cursor: pointer;
@@ -34,8 +34,8 @@
 }
 
 .page-item:hover {
-    border: .1em solid var(--color-menu-active);
-    background-color: var(--color-menu-active);
+    border: .1em solid var(--color-blue-1);
+    background-color: var(--color-blue-1);
     color: #fff;
 }
 
@@ -43,7 +43,7 @@
     font-size: 1.2em;
     display: flex;
     align-items: center;
-    color: var(--color-timer-active);
+    color: var(--color-grey-7);
 }
 
 .page-item:first-child, .page-item:last-child {
@@ -52,14 +52,14 @@
 }
 
 .page-item:first-child:hover, .page-item:last-child:hover {
-    border: .1em solid var(--color-menu-disabled);
+    border: .1em solid var(--color-grey-3);
     background-color: #eaeaea;
 }
 
 .page-item.page-active {
     color: #fff;
-    background-color: var(--color-menu-active) ;
-    border: .1em solid var(--color-menu-active) ;
+    background-color: var(--color-blue-1) ;
+    border: .1em solid var(--color-blue-1) ;
 }
 
 

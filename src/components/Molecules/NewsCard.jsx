@@ -1,14 +1,14 @@
-import { useState, useEffect, useRef, useContext } from 'react'
+import { useRef } from 'react'
 import { FaHeart, FaRegHeart } from 'react-icons/fa'
 import { MdOutlineWatchLater } from 'react-icons/md'
 import moment from 'moment'
-import NewsContext from '../../context/NewsContext'
 
-const NewsCard = ({id, created, title, author, url, isFaves}) => {
+import '../../styles/newsCard.css'
+
+
+const NewsCard = ({id, created, title, author, url, isFaves, toggleFaves}) => {
     
-    const card = useRef(),
-         {toggleFaves} = useContext(NewsContext)
-
+    const card = useRef()
          
     return (
         <article ref={card} className="card" id={id}>

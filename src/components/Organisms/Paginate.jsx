@@ -7,12 +7,29 @@ import NewsCard from '../Molecules/NewsCard'
 import Loader from '../Molecules/Loader'
 
 import '../../styles/paginate.css'
-import '../../styles/newsCard.css'
 
 
 const Items = ({ currentNews }) => {
 
-  const {newsGrid, favesStorage} = useContext(NewsContext)
+  const {favesStorage, setFavesStorage} = useContext(NewsContext),
+        newsGrid = useRef()
+
+  const toggleFaves = card => {
+
+    const allCards = Array.from(newsGrid.current.children),
+          addFav = allCards.filter(n => n.id === card.id)[0],
+          addIndex = allCards.indexOf(addFav),
+          removeFav = favesStorage.filter(n => n.id.toString() === card.id)[0],
+          removeIndex = favesStorage.indexOf(removeFav),
+          repeatedCard = favesStorage.includes(removeFav)
+
+      if(repeatedCard) {
+        favesStorage.splice(removeIndex, 1)
+        setFavesStorage([...favesStorage])
+      } else {
+        setFavesStorage([...favesStorage, currentNews[addIndex]])
+      }
+  }
 
   return (    
     <>
@@ -28,46 +45,41 @@ const Items = ({ currentNews }) => {
                               created={item.created}
                               author={item.author}
                               isFaves={ favesStorage.includes(favesStorage.filter(n => n.id === item.id)[0]) }
-                    />)
+                              toggleFaves={toggleFaves}
+                    />
+                )
               }
             </div>
 
           :  <div className='box-loader'>
                 <Loader message='Getting data from server...' />  
-             </div>
+            </div>
       }
     </>
   )
 }
 
 
-const Paginate = ({news}) => {
+const Paginate = ({news, numberPages}) => {
+
+  const {setPage, itemsPerPage} = useContext(NewsContext) 
 
   const [currentNews, setCurrentNews] = useState(),
-        [pageCount, setPageCount] = useState(50),
-        [itemOffset, setItemOffset] = useState(0),
-        // [news, setNews] = useLocalStorage('news', []),
-        itemsPerPage = 8
-
-
-  const {setPage, numberPages} = useContext(NewsContext) 
+        [pageCount, setPageCount] = useState(),
+        [itemOffset, setItemOffset] = useState(0)
 
   useEffect(() => {
-      if(news) {
-          const endOffset = itemOffset + itemsPerPage
-          setCurrentNews(news.slice(itemOffset, endOffset))
-          // setPageCount(Math.ceil(news.length / itemsPerPage))
-          
-          // setPageCount(numberPages)
+    if(news){
+      const endOffset = itemOffset + itemsPerPage
+      setCurrentNews(news.slice(itemOffset, endOffset))
+      setPageCount(Math.ceil(numberPages * itemsPerPage / itemsPerPage))
       }
-    }, [itemOffset, itemsPerPage, news, numberPages])
-
+    }, [itemOffset, itemsPerPage, news])
 
 
   const handlePageClick = e => {
-    // const newOffset = (e.selected * itemsPerPage) % news.length
-    // setItemOffset(newOffset)
-    setItemOffset(0)
+    const newOffset = (e.selected * itemsPerPage) % news.length
+    setItemOffset(newOffset)
     setPage(e.selected)
   }
 
@@ -76,7 +88,7 @@ const Paginate = ({news}) => {
     <>
       <Items currentNews={currentNews} />
       {
-        news && news.length > itemsPerPage && 
+        pageCount && pageCount > 1 && 
         <ReactPaginate
           nextLabel={<FaAngleRight />}
           onPageChange={handlePageClick}
