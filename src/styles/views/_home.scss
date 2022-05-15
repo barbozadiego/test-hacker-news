@@ -1,0 +1,147 @@
+.angular {
+    color: #dd1b16;
+    margin-right: .5em;
+}
+
+.reactjs {
+    color: #61dbfb;
+    margin-right: .5em;
+}
+
+.vuejs {
+    color: #41b883;
+    margin-right: .5em;
+}
+
+.arrow-down svg {
+    font-size: 1.25em;
+    position: absolute;
+    right: .8em;
+    top: 0;
+    bottom: 0;
+    margin: auto 0;
+    pointer-events: none;
+}
+
+.animate-arrow svg {
+    transform: rotate(180deg);
+}
+
+
+.box-news {
+    font-size: .9em;
+    max-width: 18em;
+    color: $grey-6;
+    background-color: #fff;
+	position: relative;
+    border: .1em solid $grey-4;
+    border-radius: .4em;
+    font-weight: 500;
+    cursor: pointer;
+    user-select: none;
+    margin-bottom: 2em;
+
+    svg {
+        pointer-events: none;
+    }
+
+    ul.display-picker {
+        display: inline-block;
+        transform: translateY(.7em);
+    }
+
+    ul svg {
+        font-size: 1.5em;
+    }
+
+    ul {
+        width: 100%;
+        color: $grey-6;
+        background-color: #fff;
+        display: none;
+        padding: .2em 0;
+        box-shadow: 0 2px 2px 0 #ccc;
+        border-radius: .3em;
+        position: absolute;
+        z-index: 1;
+        left: 0;
+        transition: all 0.25s ease;
+
+        li {
+            list-style: none;
+            padding: .7em 1.3em;
+            display: flex;
+            align-items: center;
+            text-transform: capitalize;
+    
+        }
+    
+        li:hover {
+            background-color: $grey-1;
+        }
+
+        li:nth-child(1) svg {
+            @extend .angular
+        }
+
+        li:nth-child(2) svg {
+            @extend .reactjs
+        }
+
+        li:nth-child(3) svg {
+            @extend .vuejs
+        }
+    }
+
+    @media screen and (max-width: 767px) {
+        font-size: 1.1em;
+    }
+}
+
+
+
+.news-query {
+    display: flex;
+    align-items: center;
+    padding: .7em 0 .7em 1.3em;
+
+    span:nth-child(1) {
+        display: flex;
+        align-items: center;
+    }
+
+    span:nth-child(2) {
+        text-transform: capitalize;
+    }
+
+    svg {
+        font-size: 1.5em;
+        margin-right: .1em;
+    }
+}
+
+
+
+.section-news {
+    margin: 0 15%;
+}
+
+.container-grid-news {
+    min-height: 40vh;
+    margin-bottom: 4em;
+}
+
+.grid-news {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2em;
+
+    @media screen and (max-width: 767px) {
+        grid-template-columns: 1fr;
+        column-gap: 0;
+    }
+}
+
+.faves .grid-news  {
+    margin-top: 3.5em;
+}

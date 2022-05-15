@@ -5,8 +5,6 @@ import NewsContext from '../../context/NewsContext'
 import Header from '../Molecules/Header'
 import Paginate from '../Organisms/Paginate'
 
-import '../../styles/home.css'
-
 
 const Home = () => {
 

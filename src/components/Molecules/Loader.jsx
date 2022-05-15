@@ -1,5 +1,3 @@
-import '../../styles/loader.css'
-
 const Loader = ({ message }) => (
     <div className="loader-modal">
         <div className='lds-spinner'>

@@ -1,0 +1,45 @@
+header {
+    padding: 2.5em 15%;
+    background: linear-gradient(to bottom, #ececec -32%, #fff 124%);
+    box-shadow: 0 1px 5px 0 rgba(0, 21, 41, 0.12);
+    margin-bottom: 4em;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2.5em;
+}
+
+.menu {
+    display: flex;
+    padding: 0 15%;
+    font-weight: 400;
+
+    li {
+        font-size: .95em;
+        list-style: none;
+        cursor: pointer;
+        user-select: none;
+    }
+
+    li a {
+        text-align: center;
+        display: block;
+        min-width: 6.3em;
+        font-weight: 500;
+        color: $grey-7;
+        border-radius: .18em;
+        padding: .5em 1.5em;
+        border: 1px solid $grey-4;
+    }
+
+    & .active  {
+        color: $blue-1;
+        border: 1px solid $blue-1;
+    }
+
+    @media screen and (max-width: 767px) {
+        font-size: 1.3em;
+    }
+}

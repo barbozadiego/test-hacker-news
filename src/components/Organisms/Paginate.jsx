@@ -6,8 +6,6 @@ import NewsContext from '../../context/NewsContext'
 import NewsCard from '../Molecules/NewsCard'
 import Loader from '../Molecules/Loader'
 
-import '../../styles/paginate.css'
-
 
 const Items = ({ currentNews }) => {
 

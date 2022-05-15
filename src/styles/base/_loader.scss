@@ -1,0 +1,68 @@
+/*________________________________________| Loader - Spiner  |________________________________________*/
+
+.box-loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+  
+.loader-modal {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5em;
+}
+
+.message {
+    color: $grey-5;
+    margin-top: 1.7em;
+}
+  
+.lds-spinner {
+    color: official;
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+
+    div {
+        transform-origin: 40px 40px;
+        animation: lds-spinner 1.2s linear infinite;
+    }
+
+    div:after {
+        content: " ";
+        display: block;
+        position: absolute;
+        top: 3px;
+        left: 37px;
+        width: 6px;
+        height: 18px;
+        border-radius: 20%;
+    }
+
+    div:after {
+        background: $blue-1;
+    }
+
+    @for $i from 0 through 11 {
+        div:nth-child(#{$i + 1}) {
+            transform: rotate($i * 30deg);
+            // animation-delay: -(1.1 - ($i / 10)) + s;
+            animation-delay: -(1.1 - calc($i / 10) + s);
+        }
+    }
+
+    @keyframes lds-spinner {
+        0% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0;
+        } 
+    }
+}
+  
+

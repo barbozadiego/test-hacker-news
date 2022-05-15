@@ -1,0 +1,66 @@
+.pagination {
+    margin-bottom: 5em;
+    display: flex;
+    justify-content: center;
+}
+
+.page-item {
+    width: 2.4em;
+    height: 2.4em;
+    color: $grey-7;
+    border: .1em solid rgba(0, 0, 0, .3);
+    border-radius: .5em;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+
+    a {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &:not(:last-child) {
+        margin-right: .8em;
+    }
+
+    &:hover {
+        border: .1em solid $blue-1;
+        background-color: $blue-1;
+        color: #fff;
+    }
+
+    &:first-child, &:last-child {
+        display: flex;
+        align-items: center;
+    }
+
+    &:first-child:hover, &:last-child:hover {
+        border: .1em solid $grey-3;
+        background-color: #eaeaea;
+    }
+
+    &.page-active {
+        color: #fff;
+        background-color: $blue-1;
+        border: .1em solid $blue-1;
+    }
+}
+
+
+.link-prev, .link-next {
+    svg {
+        font-size: 1.2em;
+        display: flex;
+        align-items: center;
+        color: $grey-7;
+    }
+}
+
+
+
+

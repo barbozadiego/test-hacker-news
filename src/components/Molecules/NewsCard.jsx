@@ -3,9 +3,6 @@ import { FaHeart, FaRegHeart } from 'react-icons/fa'
 import { MdOutlineWatchLater } from 'react-icons/md'
 import moment from 'moment'
 
-import '../../styles/newsCard.css'
-
-
 const NewsCard = ({id, created, title, author, url, isFaves, toggleFaves}) => {
     
     const card = useRef()
